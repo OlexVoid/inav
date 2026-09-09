@@ -95,7 +95,8 @@
 #define UART6_RX_PIN            PC7
 #define UART6_TX_PIN            PC6
 
-#define SERIAL_PORT_COUNT       4
+// #define SERIAL_PORT_COUNT       4
+#define SERIAL_PORT_COUNT       5
 
 // Mag
 #define USE_MAG
@@ -113,8 +114,12 @@
 
 #define DEFAULT_FEATURES        (FEATURE_OSD | FEATURE_CURRENT_METER | FEATURE_VBAT | FEATURE_TELEMETRY )
 
-#define USE_LED_STRIP
-#define WS2811_PIN                  PB6
+// #define USE_LED_STRIP
+// #define WS2811_PIN                  PB6
+#define USE_SOFTSERIAL1
+#define SOFTSERIAL_1_TX_PIN    PB6
+#define SOFTSERIAL_1_RX_PIN    NONE
+
 
 #define USE_SERIAL_4WAY_BLHELI_INTERFACE
 
