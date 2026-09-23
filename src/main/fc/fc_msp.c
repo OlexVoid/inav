@@ -2971,31 +2971,32 @@ static mspResult_e mspFcProcessInCommand(uint16_t cmdMSP, sbuf_t *src)
             if (vtxDevice) {
                 if (vtxCommonGetDeviceType(vtxDevice) != VTXDEV_UNKNOWN) {
                     uint16_t newFrequency = sbufReadU16(src);
-                    if (newFrequency <= VTXCOMMON_MSP_BANDCHAN_CHKVAL) {  //value is band and channel
-                        const uint8_t newBand = (newFrequency / 8) + 1;
-                        const uint8_t newChannel = (newFrequency % 8) + 1;
-                        if (vtxSettingsConfig()->band != newBand || vtxSettingsConfig()->channel != newChannel) {
-                            vtxSettingsConfigMutable()->band = newBand;
-                            vtxSettingsConfigMutable()->channel = newChannel;
-                        }
-                    }
+                    // if (newFrequency <= VTXCOMMON_MSP_BANDCHAN_CHKVAL) {  //value is band and channel
+                    //     const uint8_t newBand = (newFrequency / 8) + 1;
+                    //     const uint8_t newChannel = (newFrequency % 8) + 1;
+                    //     if (vtxSettingsConfig()->band != newBand || vtxSettingsConfig()->channel != newChannel) {
+                    //         vtxSettingsConfigMutable()->band = newBand;
+                    //         vtxSettingsConfigMutable()->channel = newChannel;
+                    //     }
+                    // }
 
                     if (sbufBytesRemaining(src) > 1) {
                         uint8_t newPower = sbufReadU8(src);
-                        if (vtxSettingsConfig()->power != newPower) {
-                            vtxSettingsConfigMutable()->power = newPower;
-                        }
+                        // if (vtxSettingsConfig()->power != newPower) {
+                        //     vtxSettingsConfigMutable()->power = newPower;
+                        // }
 
                         // Delegate pitmode to vtx directly
                         const uint8_t newPitmode = sbufReadU8(src);
-                        uint8_t currentPitmode = 0;
-                        vtxCommonGetPitMode(vtxDevice, &currentPitmode);
-                        if (currentPitmode != newPitmode) {
-                            vtxCommonSetPitMode(vtxDevice, newPitmode);
-                        }
+                        // uint8_t currentPitmode = 0;
+                        // vtxCommonGetPitMode(vtxDevice, &currentPitmode);
+                        // if (currentPitmode != newPitmode) {
+                        //     vtxCommonSetPitMode(vtxDevice, newPitmode);
+                        // }
 
                         if (sbufBytesRemaining(src) > 0) {
-                            vtxSettingsConfigMutable()->lowPowerDisarm = sbufReadU8(src);
+                            // vtxSettingsConfigMutable()->lowPowerDisarm = sbufReadU8(src);
+                            sbufReadU8(src);
                         }
 
                         // API version 1.42 - extension for pitmode frequency
@@ -3006,14 +3007,14 @@ static mspResult_e mspFcProcessInCommand(uint16_t cmdMSP, sbuf_t *src)
                         // API version 1.42 - extensions for non-encoded versions of the band, channel or frequency
                         if (sbufBytesRemaining(src) >= 4) {
                             uint8_t newBand = sbufReadU8(src);
-                            if (vtxSettingsConfig()->band != newBand) {
-                                vtxSettingsConfigMutable()->band = newBand;
-                            }
+                            // if (vtxSettingsConfig()->band != newBand) {
+                            //     vtxSettingsConfigMutable()->band = newBand;
+                            // }
 
                             const uint8_t newChannel = sbufReadU8(src);
-                            if (vtxSettingsConfig()->channel != newChannel) {
-                                vtxSettingsConfigMutable()->channel = newChannel;
-                            }
+                            // if (vtxSettingsConfig()->channel != newChannel) {
+                            //     vtxSettingsConfigMutable()->channel = newChannel;
+                            // }
                         }
 
                         if (sbufBytesRemaining(src) >= 2) {
@@ -3025,9 +3026,9 @@ static mspResult_e mspFcProcessInCommand(uint16_t cmdMSP, sbuf_t *src)
                             sbufReadU8(src); // channel count
 
                             uint8_t newPowerCount = sbufReadU8(src);
-                            if (newPowerCount > 0 && newPowerCount < (vtxDevice->capability.powerCount)) {
-                                vtxDevice->capability.powerCount = newPowerCount;
-                            }
+                            // if (newPowerCount > 0 && newPowerCount < (vtxDevice->capability.powerCount)) {
+                            //     vtxDevice->capability.powerCount = newPowerCount;
+                            // }
                         }
                     }
                 }

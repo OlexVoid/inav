@@ -669,9 +669,9 @@ void init(void)
     vtxSmartAudioInit();
 #endif
 
-#ifdef USE_VTX_TRAMP
-    vtxTrampInit();
-#endif
+// #ifdef USE_VTX_TRAMP
+//     vtxTrampInit();
+// #endif
 
 #ifdef USE_VTX_FFPV
     vtxFuriousFPVInit();
@@ -681,6 +681,10 @@ void init(void)
     if (feature(FEATURE_OSD)) {
        vtxMspInit();
     }
+#endif
+
+#ifdef USE_VTX_TRAMP
+    vtxTrampInit();
 #endif
 
 #endif // USE_VTX_CONTROL
